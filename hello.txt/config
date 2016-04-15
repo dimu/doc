@@ -1,0 +1,29 @@
+# second user(wenxiang0705@qq.com)
+# 建一个github别名，新建的帐号使用这个别名做克隆和更新
+#Host emis1
+#HostName gitlab.crunii.com
+#User wxdeng
+#IdentityFile ~/.ssh/ri_rsa_emis1
+
+# third user(wxdeng@cqccc.com.cn/cqccc2016)
+# 建一个gitlab.crunii别名，新建的帐号使用这个别名做克隆和更新
+Host emis3
+HostName gitlab.crunii.com
+User wxdeng
+IdentityFile ~/.ssh/id_rsa_emis3
+Port 60002
+
+
+# third user(wxdeng@cqccc.com.cn/cqccc2016)
+# 建一个github别名，新建的帐号使用这个别名做克隆和更新
+#Host emis
+#HostName gitlab.crunii.com
+#User wxdeng
+#IdentityFile ~/.ssh/id_rsa_emis
+
+#该文件用于配置私钥对应的服务器
+#Default github user(wenxiang0705@qq.com)
+Host github
+HostName github.com
+User dimu
+IdentityFile  ~/.ssh/id_rsa_github1
