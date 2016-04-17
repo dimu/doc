@@ -27,3 +27,5 @@ Host github
 HostName github.com
 User dimu
 IdentityFile  ~/.ssh/id_rsa_github1
+
+#github add comment
