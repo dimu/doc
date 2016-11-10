@@ -1,0 +1,57 @@
+hadoop²Ù×÷
+hadoop dfsadmin -safemode leave #Àë¿ªsafemode
+hadoop dfs ¨Cls /
+hadoop fs ¨Crmr /user/t
+
+hadoop fs -mkdir /hbase
+
+hadoop fs -mkdir /opt/hbase/apache-hbase-1.1.4/lib
+
+hdfs dfs -copyFromLocal /opt/hbase/apache-hbase-1.1.4/lib/* hdfs://test-centos:9000/opt/hbase/apache-hbase-1.1.4/lib/
+
+==================================================================================================================================
+
+truncate 'gp_real_time_data'
+disable 'gp_real_time_data'
+drop 'gp_real_time_data'
+
+create 'gp_real_time_data', {NAME => 'data', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_SCOPE => '0', COMPRESSION => 'NONE', VERSIONS => '2', MIN_VERSIONS => '0', KEEP_DELETED_CELLS => 'FALSE', BLOCKSIZE => '65536', IN_MEMORY => 'false', BLOCKCACHE => 'true'}, {NAME => 'ext', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_SCOPE => '0', COMPRESSION => 'NONE', VERSIONS => '2', MIN_VERSIONS => '0', KEEP_DELETED_CELLS => 'FALSE', BLOCKSIZE => '65536', IN_MEMORY => 'false', BLOCKCACHE => 'true'}
+
+hadoop fs -put /home/emis/hbasedata/gp_real_time hdfs://localhost:9000/hbase/gp_real_time
+
+./hbase org.apache.hadoop.hbase.mapreduce.Import gp_real_time_data hdfs://localhost:9000/hbase/gp_real_time
+
+scan 'gp_real_time_data',{LIMIT=>5}
+count 'gp_real_time_data', {INTERVAL => 100, CACHE => 500}
+
+==================================================================================================================================
+
+truncate 'gp_energy_data'
+disable 'gp_energy_data'
+drop 'gp_energy_data'
+
+create 'gp_energy_data', {NAME => 'ec', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_SCOPE => '0', COMPRESSION => 'NONE', VERSIONS => '3', MIN_VERSIONS => '0',KEEP_DELETED_CELLS => 'FALSE', BLOCKSIZE => '65536', IN_MEMORY => 'false', BLOCKCACHE => 'true'},{NAME => 'et', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_SCOPE => '0', COMPRESSION => 'NONE', VERSIONS => '3', MIN_VERSIONS => '0',KEEP_DELETED_CELLS => 'FALSE', BLOCKSIZE => '65536', IN_MEMORY => 'false', BLOCKCACHE => 'true'},{NAME => 'op', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_SCOPE => '0', COMPRESSION => 'NONE', VERSIONS => '3', MIN_VERSIONS => '0',KEEP_DELETED_CELLS => 'FALSE', BLOCKSIZE => '65536', IN_MEMORY => 'false', BLOCKCACHE => 'true'}
+
+hadoop fs -put /home/emis/hbasedata/gp_energy_data hdfs://localhost:9000/hbase/gp_energy_data
+
+./hbase org.apache.hadoop.hbase.mapreduce.Import gp_energy_data hdfs://localhost:9000/hbase/gp_energy_data
+
+scan 'gp_energy_data',{LIMIT=>5}
+count 'gp_energy_data', {INTERVAL => 100, CACHE => 500}
+
+==================================================================================================================================
+
+truncate 'gp_energy_data_his'
+disable 'gp_energy_data_his'
+drop 'gp_energy_data_his'
+
+create 'gp_energy_data_his', {NAME => 'ec', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_SCOPE => '0', COMPRESSION => 'NONE', VERSIONS => '3', MIN_VERSIONS => '0',KEEP_DELETED_CELLS => 'FALSE', BLOCKSIZE => '65536', IN_MEMORY => 'false', BLOCKCACHE => 'true'},{NAME => 'et', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_SCOPE => '0', COMPRESSION => 'NONE', VERSIONS => '3', MIN_VERSIONS => '0',KEEP_DELETED_CELLS => 'FALSE', BLOCKSIZE => '65536', IN_MEMORY => 'false', BLOCKCACHE => 'true'},{NAME => 'op', DATA_BLOCK_ENCODING => 'NONE', BLOOMFILTER => 'ROW', REPLICATION_SCOPE => '0', COMPRESSION => 'NONE', VERSIONS => '3', MIN_VERSIONS => '0',KEEP_DELETED_CELLS => 'FALSE', BLOCKSIZE => '65536', IN_MEMORY => 'false', BLOCKCACHE => 'true'}
+
+hadoop fs -put /home/emis/hbasedata/gp_energy_data_his hdfs://localhost:9000/hbase/gp_energy_data_his 
+
+./hbase org.apache.hadoop.hbase.mapreduce.Import gp_energy_data_his hdfs://localhost:9000/hbase/gp_energy_data_his 
+
+scan 'gp_energy_data_his',{LIMIT=>5}
+count 'gp_energy_data_his', {INTERVAL => 100, CACHE => 500}
+
+==================================================================================================================================
