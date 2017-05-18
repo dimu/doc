@@ -12,7 +12,7 @@ note包中记载了技术研究笔记，目录结构为：
 1.  **web**
 	1.   architecture design(架构设计)
 	2.   database（数据库）
-		1.   - hibernate
+		1.   hibernate
 	3.   distributed network architecture
 	4.   spring
 	5.   test
