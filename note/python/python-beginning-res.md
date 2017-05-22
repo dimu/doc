@@ -161,4 +161,150 @@ dictionary的基本操作：
 
 操作符分为：
 
-1. 
+### Arichmetic Operators ###
+
+常见的算术运算
+ 
+    x = 10
+	y = 21
+	
+	x + y = 31
+	x - y = -11
+	x * y  = 210
+	y / x = 2.1
+	y % x  = 1
+	x ** y  = 10的21次幂
+	y // x = 2  9//2 = 4 -11/3 = -4
+
+### Comparison Operator ###
+
+常见的比较运算
+
+    10 == 21 false
+	10 ！= 21 true
+    10 > 21 false
+	10 < 21 true
+	10 >= 21 false
+	10 <= 21 true
+
+### assignment operator ###
+
+常见的赋值运算：
+
+    c =  a + b 
+	c += a
+	c -= a
+	c *= a
+	c /= a 整除
+	c %= a 求余
+	c **= a 指数
+    c //= a floor
+
+### bitwise operators ###
+
+常见的位运算
+
+    a = 0011 1100 (60)
+	b = 0000 1101 (13)
+	
+	a & b = 00000 1100 按位与
+	a | b = 0011 1101 按位或
+	a ^ b  = 0011 0001 按位异或
+	~a = 1100 0011 取反
+	a << 2 = 1111 0000 (240)
+	a >> 2 = 0000 1111 (15)
+
+### logical operator ###
+
+常见的逻辑运算：
+
+    a = true 
+	b = false
+
+	a and  b is false
+	a or b is true
+	not a is false
+
+### 成员运算 ###
+
+常见的成员运算：
+
+    a = 10
+	b = 20
+	list = [1, 2, 3, 4, 5 ]
+
+	if ( a in list ):
+  		print ("Line 1 - a is available in the given list")
+	else:
+   		print ("Line 1 - a is not available in the given list")
+
+	if ( b not in list ):
+   		print ("Line 2 - b is not available in the given list")
+	else:
+   		print ("Line 2 - b is available in the given list")
+
+	c=b/a
+	if ( c in list ):
+   		print ("Line 3 - a is available in the given list")
+	else:
+   		print ("Line 3 - a is not available in the given list")
+
+### identity operator ###
+
+对象实体测试：比较两个对象的内存地址是否一致
+
+    a = 20
+	b = 20
+	print ('Line 1','a=',a,':',id(a), 'b=',b,':',id(b))
+
+	if ( a is b ):
+  		print ("Line 2 - a and b have same identity")
+	else:
+   		print ("Line 2 - a and b do not have same identity")
+
+	if ( id(a) == id(b) ):
+   		print ("Line 3 - a and b have same identity")
+	else:
+   		print ("Line 3 - a and b do not have same identity")
+
+	b = 30
+		print ('Line 4','a=',a,':',id(a), 'b=',b,':',id(b))
+
+	if ( a is not b ):
+   		print ("Line 5 - a and b do not have same identity")
+	else:
+   		print ("Line 5 - a and b have same identity")
+
+	运行结果：
+	Line 1 a= 20 : 1361467424 b= 20 : 1361467424
+	Line 2 - a and b have same identity
+	Line 3 - a and b have same identity
+	Line 4 a= 20 : 1361467424 b= 30 : 1361467584
+	Line 5 - a and b do not have same identity
+
+## condition statement ##
+
+	python 将0或者null值当做false，其他都为true
+	if
+	if ... else ...
+	if (if ... else ... ) else ...
+
+## loops ##
+
+循环语句：
+	while loop  while循环
+	for loop for循环
+
+	break 语句
+	continue 语句
+	pass 语句
+	
+	#例子，iterator对象的iter与next方法混合使用
+    list = [1,2,3,4]
+	it = iter(list)
+	
+	while true
+		try:
+			print（next（it））
+		except StopIteration:
+			sys.exit()
