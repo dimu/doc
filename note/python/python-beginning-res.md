@@ -308,3 +308,85 @@ dictionary的基本操作：
 			print（next（it））
 		except StopIteration:
 			sys.exit()
+
+## Numbers ##
+
+### Type Conversion ###
+类型转换
+
+    int（x）   int（13.0）
+	long（x）  long（12）  python3中舍弃了long类型
+	float（x） float（12）
+	complex(x[,y]) complex(1,2)-> 1+2j 复数形式在实际应用中很少使用
+
+### Mathematical Functions ###
+数学函数
+
+    abs（x） 绝对值
+	math.ceil(x) 返回比当前值大的最小整数
+	math.exp(x)  e的x次方
+	math.fabs(x) 
+	math.floor(x) 地板值
+	math.log(x)
+	math.log10(x)
+	math.max(x1,x2,...) 最大值
+	math.min(x1,x2,...) 最小值
+	math.modf(x) math.modf(math.pi) 将数值分解为整数与小数部分
+	math.pow(x,y)  x的y次方
+	round(x[,n])  四舍五入
+	math.sqrt(x) 平方根
+	...
+
+### random function ###
+随机函数
+
+    random.choice(seq) random.choice([1,2,3,4]) 随机返回一个数值
+	randrange（[start,]stop[,step]) randrange(0,10,2) 以2为步调
+	random.random()  返回0<=r<1的随机值
+	random.seed([x])
+	random.shuffle(list) 洗牌
+	random.uniform(x,y)
+
+## function ##
+函数
+
+python中函数参数都是传址而不是传值
+
+函数参数类型有四种类型：
+	
+- Required argument -
+- Keyword argument -带关键字参数
+- Default argument -默认参数
+- Variable-length argument -可变参数
+
+### lambda函数 ###
+
+lambda语法：只允许单行表达式
+> lambda [arg1 [,arg2,.....argn]]:expression
+
+    sum = lambda arg1, arg2: arg1 + arg2
+
+
+	# Now you can call sum as a function
+	print ("Value of total : ", sum( 10, 20 ))
+	print ("Value of total : ", sum( 20, 20 ))
+
+### global vs local variables ###
+
+全局与局部变量：方法外测的都是全局变量，方法内部的都是局部变量
+
+    total = 0 # This is global variable.
+	# Function definition is here
+	def sum( arg1, arg2 ):
+   		# Add both the parameters and return them."
+   		total = arg1 + arg2; # Here total is local variable.
+   		print ("Inside the function local total : ", total)
+   		return total
+
+	# Now you can call sum function
+	sum( 10, 20 )
+	print ("Outside the function global total : ", total )
+
+	#result：
+	#Inside the function local total :  30
+	#Outside the function global total :  0
