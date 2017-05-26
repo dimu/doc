@@ -390,3 +390,66 @@ lambda语法：只允许单行表达式
 	#result：
 	#Inside the function local total :  30
 	#Outside the function global total :  0
+
+## modules ##
+
+modules：python核心设计
+
+## Exception ##
+
+异常部分分为：
+1. Exception Handling
+2. Assertions
+
+常见的异常：
+1. Excepiton -全部的异常
+2. StopIteration —停止迭代异常
+3. SystemExit —调用sys.exit()触发异常
+4. StandardError —除了StopIteration与SystemExit后的其他异常
+5. ArithmeticError -所有的数值计算
+6. OverflowError —计算溢出异常
+7. FloatingPointError —浮点数异常
+8. ZeroDivisionError -0除异常
+9. AssertionError -断言异常
+10. AttributeError -属性异常
+11. EOFError - input无输入或者到达文件尾时触发
+12. ImportError -导入失败
+13. KeyboardInterrupt -执行打断
+14. LookupError —查找失败异常
+15. KeyError —在dict中没有找到指定的键值
+16. NameError -变量没有找到
+17. UnboundLocalError -使用未赋值的本地变量
+18. EnvironmentError -环境异常
+19. IOError -IO异常
+20. OSError -操作系统相关的异常
+21. SyntaxError -语法异常
+22. IndentationError -缩进异常
+23. SystemError -系统异常
+24. SystemExit -
+25. TypeError -类型异常
+26. ValueError
+27. RuntimeError
+28. NotImplementedError -之类没有实例化父类的抽象方法
+
+python脚本的异常必须捕获，否则程序会立即终止退出
+python使用 try：。。。except xx： 。。。 else： 。。。语法
+
+    try:
+   		fh = open("testfile", "w")
+   		fh.write("This is my test file for exception handling!!")
+	except IOError:
+   		print ("Error: can\'t find file or read data")
+	else:
+   		print ("Written content in the file successfully")
+   		fh.close()
+
+    #try finally
+	try:
+    	fh = open("testfile", "w")
+    	try:
+        	fh.write("This is my test file for exception handling!!")
+    	finally:
+        	print ("Going to close the file")
+        	fh.close()
+	except IOError:
+    	print ("Error: can\'t find file or read data")
