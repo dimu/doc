@@ -26,3 +26,10 @@ adivice in spring
 2. Before -> org.springframework.aop.BeforeAdvice
 3. After -> org.springframework.aop.AfterReturningAdvice
 4. Throws -> org.springframework.aop.ThrowsAdvice  
+
+## Aop实战 ##
+1. aop拦截方法，记录方法到日志中
+
+## spring 支持的4中aop ##
+
+1.  基于代理的经典AOP（已经摈弃了，过于笨重与繁琐）
