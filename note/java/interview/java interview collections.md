@@ -25,6 +25,26 @@ IO的各种流是阻塞的。这意味着，当一个线程调用read() 或 writ
 
 **java进程通信方式与线程通信方式**
 
+多线程之间的通信方式：（大致4种）
+1、共享变量
+2、wait/notify机制
+3、Lock/Condition机制
+4、管道机制
+
+进程间的通信：
+1、管道（Pipe）
+2、命名管道（named pipe）
+3、signal(信号)
+4、消息队列（Messge）
+5、共享内存
+6、内存映射
+7、semaphore(信号量)
+8、套接字（socket）
+
+**volatile底层实现原理**
+
+volatile标志变量写的时候要准守cache一致性原则MESI（modified， exclusive，shared，invalid），当共享变量写入内存时，其他处理器会将本处理器中缓存数据强行标记为无效，下次再从内存中读取到缓存中。
+
 **java虚拟机内存模型**
 
 虚拟机的内存模型：主要指运行时数据区
@@ -126,3 +146,14 @@ CMS收集器无法处理浮动垃圾，可能出现“Concurrent Mode Failure“
 G1(Garbage First)收集器是JDK1.7提供的一个新收集器，G1收集器基于“标记-整理”算法实现，也就是说不会产生内存碎片。还有一个特点之前的收集器进行收集的范围都是整个新生代或老年代，而G1将整个Java堆(包括新生代，老年代)。
 
 **怎么优化设定新生代老生代等**
+
+
+## web topic ##
+
+**session与cookie的区别**
+
+1、cookie数据存放在客户的浏览器上，session数据放在服务器上
+2、cookie是不安全的，session是安全的
+3、session会在一定时间内保存在服务器上，当访问增多会占用内存，影响服务器性能。cookie存放在客户端，可以
+减轻服务器压力
+4、单个cookie保存的数据不能超过4K，所以cookie不能来保存大文件
