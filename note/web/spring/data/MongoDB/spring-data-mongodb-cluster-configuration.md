@@ -1,0 +1,1 @@
+# mongodb cluster & standalone configuration #
