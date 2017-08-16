@@ -1,1 +1,0 @@
-# java professional terms  #

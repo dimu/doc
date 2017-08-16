@@ -1,1 +1,0 @@
-# res about python thread #

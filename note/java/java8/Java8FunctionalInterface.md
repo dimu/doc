@@ -1,1 +1,0 @@
-# java8 functional interface（java8 函数式接口） #
