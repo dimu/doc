@@ -1,6 +1,6 @@
 # redis config #
 
-**官网教程**
+**1、官网教程**
 
     * $ wget http://download.redis.io/releases/redis-4.0.1.tar.gz
     * $ tar xzf redis-4.0.1.tar.gz
@@ -14,3 +14,6 @@
 **运行redis shell**
 
     * ./src/redis-cli
+
+
+**2、windows安装与运行命令**
