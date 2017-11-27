@@ -1,0 +1,45 @@
+courseware
+hardware
+node
+node_modules
+.idea
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings
+.tmp
+.merge_file*
+.sass-cache
+.DS_Store
+.gradle
+.metadata
+.recommenders
+
+target
+build
+logs
+work
+bin
+npm-*.log
+WEB-INF
+*.ldb
+application.pid
+application-person.yml
+
+api
+database
+tool
+ebooks
+epub
+front end
+information security
+software development
+Thumbs.db
+cloud computing
+computer network
+rule engine
+test
+linux
+plan & training
