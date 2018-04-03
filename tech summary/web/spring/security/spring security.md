@@ -15,11 +15,31 @@ OAuth的核心思想：让客户端安全可控的获取用户的授权，与服
 
 ## spring相关默认端点
 
-## token store
+## token store（token存储模式）
 
 ### InMemoryTokenStore
 
 ### JdbcTokenStore
 
 ### JwtTokenStore
+
+### RedisTokesnStore
+
+## authentication(技术方式)
+### In-Memory Authentication
+
+### JDBC Authentication
+
+### LDAP Authentication
+
+### AuthenticationProvider
+
+### UserDatailsService
+
+## ResourceServer实现方式
+
+### ResourceServer如何与zuul配合使用
+
+## zuul与oauth2结合
+
 
