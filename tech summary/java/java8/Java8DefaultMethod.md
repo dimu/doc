@@ -43,3 +43,4 @@ default method 也叫defender方法或者虚拟扩展方法（virtual extension 
 
 1. 扩展原有接口——针对原有接口进行功能扩展，不需要修改实现类。
 2. 提供默认实现，无须每个接口的实现类都实现相同的功能。
+3. 在spring framework5.0版本webmvc的适配器WebMvcConfigureAdapter就被废弃掉，其功能被WebMvcConfigurer接口采用default method接口实现了，所以springframework中许多Adapter抽象类就被默认接口实现给替换了。
