@@ -173,3 +173,106 @@ protocol也支持导入其他proto文件，通过proto文件导入方式，能�
 
 ### 2.7 Unknown Fields
 
+对于解析端，如果解析的数据流中包含一些未知字段，通常来说解析时候把未知字段给**忽略**了，但是在protocol3.5及以后的版本中，未知字段在解析时候会被**保留**而不是丢弃。
+
+### 2.8 Any 
+
+protocol中提供了一种特殊的消息类型Any。 Any的意思为：字段可以为任何类型，在序列化时候就将此字段序列化为bytes。
+
+示例：
+
+	import "google/protobuf/any.proto";
+
+	message ErrorStatus {
+  		string message = 1;
+  		repeated google.protobuf.Any details = 2;
+	}
+
+在使用Any消息类型的时候，必须引入google的any这个proto文件。对于**Any的使用场景**需要收集总结？
+
+### 2.9 Oneof
+
+Oneof用于标记消息中某些字段同时最多只有一个能够同时存在，经常用于标记互斥的字段。
+
+示例：
+
+	message Person {
+  		oneof contact {
+    		string mobile = 4;
+    		string email = 9;
+  		}
+	}
+
+
+**Oneof Features**
+
+注意在实际消息对象赋值的过程中，oneof特性带来值覆盖问题，最终值是最后一个oneof字段，oneof字段不允许使用repeated。
+
+**oneof使用案例**
+
+
+### 2.10 Maps
+
+Maps也是最常见的数据类型。
+
+示例
+
+	map<string, Person> class = 2;
+
+protocol对map做了以下限定
+
+1. key必须为inegral以及string，value可以为除了map后的任何类型
+2. map不能用repeated来进行修饰
+3. 不允许有重复的key
+4. 对于只有key没有value情况，不同语言处理方式不一样
+
+### 2.11 Packages
+
+protocol为了防止定义的消息类型冲突，也引入了package概念，类似于java，c++等语言，protocol的包在转换为不同语言实现时，会有相关转换关系。
+
+定义一个包的消息：
+
+	package com.dwx;
+
+	message Person {
+	}
+
+引入一个包对象
+
+	message Class {
+		com.dwx.Person stu = 1;
+	}
+
+在proto文件转换为java文件时，默认用定义的package名来作为java的包名，如果想改变该规律，可以使用配置项
+
+	option java_package = "com.xx.xx"
+
+### 2.12 Defining Services
+
+proto文件中除了定义消息类型，另一个重要任务就是服务接口。编译器会根据选择的语言生成相应的接口代码以及存根代码。
+
+常见的service示例
+
+	service SearchPerson {
+		rpc Search(Person) returns(Class);
+	}
+
+不同的编译插件可以快速生成对应的interface以及stub代码，需要**深入研究maven或者gradle方式下如何集成相关插件，运行指令等**。
+
+### 2.13 Options
+
+proto buffer提供可选项参数，用于改变编译的一些默认行为，目前主要有针对java或者移动端的一些优化配置，汇总如下:
+
+1. java_package: 改变java的默认package名
+
+	option java_package = "xx.xx.xx"
+
+2. java_ multiple_files:是否将messages，enums以及services作为内部类
+
+	option java_ multiple_files = true
+
+3. java_outer _classname：指定outerclass名字，默认为proto文件名
+
+	option java_outer _classname = "PersonStu"
+
+4. optimize_ for：可以被设置为SPEED，CODE_SIZE
