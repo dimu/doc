@@ -275,4 +275,54 @@ proto buffer提供可选项参数，用于改变编译的一些默认行为，�
 
 	option java_outer _classname = "PersonStu"
 
-4. optimize_ for：可以被设置为SPEED，CODE_SIZE
+4. optimize_ for：可以被设置为SPEED，CODE_SIZE，LITE_RUNTIME。通过设置优化属性，代码产生器会针对不同的语言进行各种优化。
+
+**Custom Options**：可以自己定义优化特性。
+
+## 3 如何生成class
+
+### 3.1 环境准备
+
+1. 安装编译环境，windows平台下可以选择[windows protoc 3.6.1安装文件](https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protoc-3.6.1-win32.zip "windows protoc编译器")
+
+2. 配置系统环境变量，在path中添加bin路径，例如 D:\IDE\protoc-3.6.0-win32\bin
+3. 在cmd命令行下，输入protoc --version,回显libprotoc XXX， XXX为安装的版本号
+
+### 3.2 编写.proto文件
+
+	syntax = "proto3"
+
+	message PersonRequest{
+
+		string name = 1; //姓名
+		uint32 age = 2; //年龄
+		string birth_day = 3; //出生日期
+		string mobile = 4; //手机号
+		enum Sex {
+			Female = 0;
+			Male = 1;
+			Other = 2;
+		}
+		Sex gender = 5; //define sex
+	}
+
+### 3.3 命令行编译
+
+指令格式如下：
+
+	protoc --proto_path=IMPORT_PATH --cpp_out=DST_DIR --java_out=DST_DIR --python_out=DST_DIR --go_out=DST_DIR --ruby_out=DST_DIR --objc_out=DST_DIR --csharp_out=DST_DIR path/to/file.proto 
+
+其中各个参数的含义如下：
+
+* --proto_path:简写-I, 为import文件的路径，缺省为当前文件路径。
+* --**_output，主要为编译器根据不同语言产生的代码文件，如果DST——DIR是.zip或者.jar，编译器会根据要求生成相应的文件
+* 提供一个或者多个文件作为输入文件，文件默认也是参考当前的路径。
+
+### 3.4 案例演示
+
+1. 编写Person.proto文件
+2. 运行protoc --java_out ./rpc/out/person.jar --go_out .\rpc\out\go\ .\rpc\Person.proto，报"--go_out:protoc-gen-go:系统找不到指定的文件",主要是编译器中不包含golang的代码生成器，删除掉go的out文件即可。
+3. 重新运行protoc --java_ out ./rpc/out/person.jar .\rpc\Person.proto，即可生成对应的jar文件，主要out_dst文件夹必须为已存在，未存在的目录代码生成器不会自动创建。
+4. 可以通过修改配置项来调整生成的jar的内容
+
+

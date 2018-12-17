@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "com.dwx.res";
+
+message PersonRequest {
+
+	string name = 1; //姓名
+	uint32 age = 2; //年龄
+	string birth_day = 3; //出生日期
+	string mobile = 4; //手机号
+	enum Sex {
+		Female = 0;
+		Male = 1;
+		Other = 2;
+	}
+	Sex gender = 5; //define sex
+	
+}
