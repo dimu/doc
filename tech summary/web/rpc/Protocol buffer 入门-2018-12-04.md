@@ -325,4 +325,12 @@ proto buffer提供可选项参数，用于改变编译的一些默认行为，�
 3. 重新运行protoc --java_ out ./rpc/out/person.jar .\rpc\Person.proto，即可生成对应的jar文件，主要out_dst文件夹必须为已存在，未存在的目录代码生成器不会自动创建。
 4. 可以通过修改配置项来调整生成的jar的内容
 
+## 4 code style
+
+代码约定：
+
+1. Message名：用驼峰，第一个字母为大写，如PersonRequest
+2. 字段名字用小写，名字用下划线之间分割，例如：birth_date
+3. 联合全部用大写
+4. service名字用大写，service中的方法名也用大写首字母+驼峰命名
 
