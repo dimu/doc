@@ -77,4 +77,37 @@ string的编码很简单，type为2 | field_number, 后面接字符串的的长�
 示例：
 
 	message Test1 {
-		
+		message Test {
+			optional int32 age =1;
+		}
+		optional Test c = 3；
+	}	
+
+	如果将age设置为150，这序列号的数据为1a 03 08 96 01
+
+#### 4.5 Optional And Repeated Elements
+
+可选以及重复元素
+
+示例：
+	
+	message Test {
+		repeated int32 x = 1 [packed=true]
+	}
+
+proto2针对repeated字段，有个可选项packed=true/false,在proto3中，重复字段默认设置为packed=true。此字段的含义为，该字段的所有值被序列化一个值，wire type为2，即length-delimited。
+
+	如果给上值依次设置为1,30， 280，则最终序列化数据为：
+	1的varint为 01
+	30的varint为1E
+	300的varint为 AC 02
+	长度为：04
+	索引与包装类型为：0A
+	序列化的数据为：0A 04 01 1E AC 02
+
+
+#### Field Order
+
+编写.proto文件时，对字段顺序没有要求，但是在序列化时候必须按照字段顺序来，因为在解析时，依赖字段顺序做了相应优化。
+
+对于未知字段，Java与C++，先按照字段顺序写入已知字段后，再按照任意顺序写入未知字段，而当前的python则没有处理未知字段。
