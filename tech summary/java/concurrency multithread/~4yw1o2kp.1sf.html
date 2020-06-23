@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+  /*
+      https://gist.github.com/andyferra/2554919
+  */
+  
+  body {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    padding: 30px; }
+  
+  body > *:first-child {
+    margin-top: 0 !important; }
+  body > *:last-child {
+    margin-bottom: 0 !important; }
+  
+  a {
+    color: #4183C4; }
+  a.absent {
+    color: #cc0000; }
+  a.anchor {
+    display: block;
+    padding-left: 30px;
+    margin-left: -30px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0; }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0 10px;
+    padding: 0;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    cursor: text;
+    position: relative; }
+  
+  h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+    background: url("../../images/modules/styleguide/para.png") no-repeat 10px center;
+    text-decoration: none; }
+  
+  h1 tt, h1 code {
+    font-size: inherit; }
+  
+  h2 tt, h2 code {
+    font-size: inherit; }
+  
+  h3 tt, h3 code {
+    font-size: inherit; }
+  
+  h4 tt, h4 code {
+    font-size: inherit; }
+  
+  h5 tt, h5 code {
+    font-size: inherit; }
+  
+  h6 tt, h6 code {
+    font-size: inherit; }
+  
+  h1 {
+    font-size: 28px;
+    color: black; }
+  
+  h2 {
+    font-size: 24px;
+    border-bottom: 1px solid #cccccc;
+    color: black; }
+  
+  h3 {
+    font-size: 18px; }
+  
+  h4 {
+    font-size: 16px; }
+  
+  h5 {
+    font-size: 14px; }
+  
+  h6 {
+    color: #777777;
+    font-size: 14px; }
+  
+  p, blockquote, ul, ol, dl, li, table, pre {
+    margin: 15px 0; }
+  
+  hr {
+    background: transparent url("../../images/modules/pulls/dirty-shade.png") repeat-x 0 0;
+    border: 0 none;
+    color: #cccccc;
+    height: 4px;
+    padding: 0; }
+  
+  body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0; }
+  body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0; }
+    body > h1:first-child + h2 {
+      margin-top: 0;
+      padding-top: 0; }
+  body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0; }
+  
+  a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0; }
+  
+  h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+    margin-top: 0; }
+  
+  li p.first {
+    display: inline-block; }
+  
+  ul, ol {
+    padding-left: 30px; }
+  
+  ul :first-child, ol :first-child {
+    margin-top: 0; }
+  
+  ul :last-child, ol :last-child {
+    margin-bottom: 0; }
+  
+  dl {
+    padding: 0; }
+    dl dt {
+      font-size: 14px;
+      font-weight: bold;
+      font-style: italic;
+      padding: 0;
+      margin: 15px 0 5px; }
+      dl dt:first-child {
+        padding: 0; }
+      dl dt > :first-child {
+        margin-top: 0; }
+      dl dt > :last-child {
+        margin-bottom: 0; }
+    dl dd {
+      margin: 0 0 15px;
+      padding: 0 15px; }
+      dl dd > :first-child {
+        margin-top: 0; }
+      dl dd > :last-child {
+        margin-bottom: 0; }
+  
+  blockquote {
+    border-left: 4px solid #dddddd;
+    padding: 0 15px;
+    color: #777777; }
+    blockquote > :first-child {
+      margin-top: 0; }
+    blockquote > :last-child {
+      margin-bottom: 0; }
+  
+  table {
+    padding: 0; }
+    table tr {
+      border-top: 1px solid #cccccc;
+      background-color: white;
+      margin: 0;
+      padding: 0; }
+      table tr:nth-child(2n) {
+        background-color: #f8f8f8; }
+      table tr th {
+        font-weight: bold;
+        border: 1px solid #cccccc;
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px; }
+      table tr td {
+        border: 1px solid #cccccc;
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px; }
+      table tr th :first-child, table tr td :first-child {
+        margin-top: 0; }
+      table tr th :last-child, table tr td :last-child {
+        margin-bottom: 0; }
+  
+  img {
+    max-width: 100%; }
+  
+  span.frame {
+    display: block;
+    overflow: hidden; }
+    span.frame > span {
+      border: 1px solid #dddddd;
+      display: block;
+      float: left;
+      overflow: hidden;
+      margin: 13px 0 0;
+      padding: 7px;
+      width: auto; }
+    span.frame span img {
+      display: block;
+      float: left; }
+    span.frame span span {
+      clear: both;
+      color: #333333;
+      display: block;
+      padding: 5px 0 0; }
+  span.align-center {
+    display: block;
+    overflow: hidden;
+    clear: both; }
+    span.align-center > span {
+      display: block;
+      overflow: hidden;
+      margin: 13px auto 0;
+      text-align: center; }
+    span.align-center span img {
+      margin: 0 auto;
+      text-align: center; }
+  span.align-right {
+    display: block;
+    overflow: hidden;
+    clear: both; }
+    span.align-right > span {
+      display: block;
+      overflow: hidden;
+      margin: 13px 0 0;
+      text-align: right; }
+    span.align-right span img {
+      margin: 0;
+      text-align: right; }
+  span.float-left {
+    display: block;
+    margin-right: 13px;
+    overflow: hidden;
+    float: left; }
+    span.float-left span {
+      margin: 13px 0 0; }
+  span.float-right {
+    display: block;
+    margin-left: 13px;
+    overflow: hidden;
+    float: right; }
+    span.float-right > span {
+      display: block;
+      overflow: hidden;
+      margin: 13px auto 0;
+      text-align: right; }
+  
+  code, tt {
+    margin: 0 2px;
+    padding: 0 5px;
+    white-space: nowrap;
+    border: 1px solid #eaeaea;
+    background-color: #f8f8f8;
+    border-radius: 3px; }
+  
+  pre code {
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    border: none;
+    background: transparent; }
+  
+  .highlight pre {
+    background-color: #f8f8f8;
+    border: 1px solid #cccccc;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px; }
+  
+  pre {
+    background-color: #f8f8f8;
+    border: 1px solid #cccccc;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px; }
+    pre code, pre tt {
+      background-color: transparent;
+      border: none; }
+  
+  
+  </style>
+</head>
+<body>
+<h1 id="java-concurrency-and-multi-thread">Java Concurrency and multi thread</h1>
+<h2 id="&#24120;&#35265;&#30340;&#23454;&#29616;&#32447;&#31243;&#26041;&#24335;">&#24120;&#35265;&#30340;&#23454;&#29616;&#32447;&#31243;&#26041;&#24335;</h2>
+<p><strong>&#23450;&#20041;&#20219;&#21153;&#65288;&#23454;&#29616;runnable&#25509;&#21475;&#65289;&#65292;&#28982;&#21518;&#30001;Thread&#26469;&#39537;&#21160;</strong></p>
+<pre><code>    public class LiftOff implements Runnable {
+    protected int countDown = 10; // Default
+    private static int taskCount = 0;
+    private final int id = taskCount++;
+
+    public LiftOff() {
+    }
+
+    public LiftOff(int countDown) {
+        this.countDown = countDown;
+    }
+
+    public String status() {
+        return &quot;#&quot; + id + &quot;(&quot; + (countDown &gt; 0 ? countDown : &quot;Liftoff!&quot;) + &quot;), &quot;;
+    }
+
+    public void run() {
+        while (countDown-- &gt; 0) {
+            System.out.print(status());
+            Thread.yield();
+        }
+    }
+    
+    public static void main(String[] args) {
+        new Thread(new LiftOff(10)).start();
+    }
+    } </code></pre>
+<p>runnable&#20219;&#21153;&#24182;&#19981;&#20855;&#22791;&#20219;&#20309;&#32447;&#31243;&#33021;&#21147;&#65292;&#22914;&#26524;&#35201;&#20855;&#22791;&#32447;&#31243;&#33021;&#21147;&#24517;&#39035;&#23558;&#20219;&#21153;&#28155;&#21152;&#21040;&#32447;&#31243;&#19978;&#12290;</p>
+<p><strong>&#38598;&#25104;Thread&#31867;</strong> &#30001;&#20110;java&#26159;&#21333;&#19968;&#32487;&#25215;&#65292;&#22914;&#26524;&#32487;&#25215;&#20102;Thread&#31867;&#21518;&#23601;&#19981;&#33021;&#32487;&#25215;&#20854;&#20182;&#31867;&#20102;&#65292;&#25152;&#20197;&#19968;&#33324;&#20248;&#20808;&#23454;&#29616;Runnable&#25509;&#21475;</p>
+<p><strong>&#20351;&#29992;Executor&#65288;&#25191;&#34892;&#22120;&#65289;</strong></p>
+<p>java1.5&#26032;&#22686;&#20102;&#24182;&#21457;&#31867;&#65292;&#20248;&#20808;&#25512;&#33616;&#20351;&#29992;Excutor&#26469;&#31649;&#29702;Thread&#23545;&#35937;&#12290;</p>
+<p>&#24120;&#35265;&#30340;ExecutorService&#65306;CachedThreadPool, FixedThreadPool,SingleThreadExecutor&#65292;ScheduledThreadPool&#31561;&#12290;</p>
+<p>&#20195;&#30721;&#31034;&#20363;&#65306;</p>
+<pre><code>public class FixedThreadExecutor {
+public static void main(String[] args) {
+    ExecutorService exec = Executors.newFixedThreadPool(5);
+    for(int i = 0; i &lt; 5; i++){
+        exec.execute(new LiftOff());
+    }
+    exec.shutdown();
+}
+
+}</code></pre>
+<p><strong>&#20174;&#20219;&#21153;&#20013;&#20135;&#29983;&#36820;&#22238;&#20540;</strong></p>
+<p>&#20256;&#32479;&#30340;&#23454;&#29616;runnable&#25509;&#21475;&#24182;&#19981;&#33021;&#20174;&#20219;&#21153;&#20013;&#20135;&#29983;&#36820;&#22238;&#20540;&#65292;&#20294;&#26159;&#26377;&#20123;&#19994;&#21153;&#38656;&#27714;&#38656;&#35201;&#30417;&#25511;&#20219;&#21153;&#25191;&#34892;&#24773;&#20917;&#65292;&#23601;&#38656;&#35201;&#36820;&#22238;&#36816;&#34892;&#32467;&#26524;&#12290; jdk1.5&#24341;&#20837;java.util.concurrency.Callable<T>&#25509;&#21475;&#26469;&#20135;&#29983;&#36820;&#22238;&#20540;&#12290;</p>
+<p>&#20363;&#23376;&#65306;</p>
+<pre><code>class TaskWithResult implements Callable&lt;String&gt; {
+private int id;
+
+public TaskWithResult(int id) {
+    this.id = id;
+}
+
+public String call() {
+    return &quot;result of TaskWithResult &quot; + id;
+}
+}
+
+public class CallableDemo {
+public static void main(String[] args) {
+    ExecutorService exec = Executors.newCachedThreadPool();
+    List&lt;Future&lt;String&gt;&gt; results = new ArrayList&lt;Future&lt;String&gt;&gt;();
+    for (int i = 0; i &lt; 10; i++)
+        results.add(exec.submit(new TaskWithResult(i)));
+    for (Future&lt;String&gt; fs : results)
+        try {
+            // get() blocks until completion:
+            System.out.println(fs.get());
+        } catch (InterruptedException e) {
+            System.out.println(e);
+            return;
+        } catch (ExecutionException e) {
+            System.out.println(e);
+        } finally {
+            exec.shutdown();
+        }
+}
+}</code></pre>
+<p><strong>&#20241;&#30496;&#26041;&#24335;</strong></p>
+<p>jdk1.5&#20197;&#21069;&#26041;&#24335;&#65306;</p>
+<p>Thread.sleep(1000)</p>
+<p>jdk1.5&#24320;&#22987;&#21450;&#20197;&#21518;&#26041;&#24335;&#65306;</p>
+<p>TimeUnit.MILLISECONDS.sleep(1000)</p>
+<p><strong>&#21518;&#21488;&#32447;&#31243;</strong></p>
+<p>deamon&#32447;&#31243;&#26159;&#25351;&#31243;&#24207;&#36816;&#34892;&#30340;&#26102;&#20505;&#22312;&#21518;&#21488;&#25552;&#20379;&#19968;&#31181;&#36890;&#29992;&#26381;&#21153;&#30340;&#32447;&#31243;&#65292;&#24182;&#19988;&#36825;&#31181;&#32447;&#31243;&#19981;&#23646;&#20110;&#31243;&#24207;&#20013;&#19981;&#21487;&#25110;&#32570;&#30340;&#37096;&#20998;&#65292; &#24403;&#31243;&#24207;&#25152;&#26377;&#38750;&#21518;&#21488;&#32447;&#31243;&#32467;&#26463;&#26102;&#65292;&#31243;&#24207;&#20063;&#23601;&#32456;&#27490;&#20102;&#65292;&#21516;&#26102;&#26432;&#27515;&#36827;&#31243;&#20013;&#25152;&#26377;&#30340;&#21518;&#21488;&#32447;&#31243;&#12290;</p>
+<p><strong>&#21152;&#20837;&#19968;&#20010;&#32447;&#31243;</strong></p>
+<p>&#22312;&#24403;&#21069;&#32447;&#31243;&#20013;&#35843;&#29992;&#21478;&#22806;&#19968;&#20010;&#32447;&#31243;&#30340;thread.join()&#26041;&#27861;&#65292;&#24403;&#21069;&#32447;&#31243;&#23558;&#34987;&#25346;&#36215;&#65292;&#31561;&#24453;&#21152;&#20837;&#30340;&#32447;&#31243;&#36816;&#34892;&#32467;&#26463;&#25110;&#32773;&#36229;&#26102;&#21518;&#20877; &#34987;&#21796;&#37266;&#32487;&#32493;&#36816;&#34892;&#12290;</p>
+<h2 id="&#36164;&#28304;&#31454;&#20105;">&#36164;&#28304;&#31454;&#20105;</h2>
+<p><strong>&#35299;&#20915;&#20849;&#20139;&#36164;&#28304;&#31454;&#20105;</strong></p>
+<p>&#24120;&#35265;&#30340;&#26041;&#24335;&#65306; 1&#12289;&#20351;&#29992;synchronized&#20851;&#38190;&#23383;&#36827;&#34892;&#21516;&#27493;</p>
+<pre><code>public synchronized int next() {}</code></pre>
+<p>2&#12289;&#20351;&#29992;&#26174;&#31034;&#30340;lock&#23545;&#35937;</p>
+<pre><code>......
+
+private Lock lock = new ReentrantLock();
+
+public int next() {
+
+    lock.lock();
+
+    try {
+      .....
+      return number;
+    } finally {
+        lock.unlock();
+    }</code></pre>
+<p><strong>&#21407;&#23376;&#31867;</strong></p>
+<p>JAVA SE5&#24341;&#20837;&#20102;AtomicInteger&#65292;AtomicLong, AtomicReference&#31561;&#29305;&#27530;&#30340;&#21407;&#23376;&#31867;&#65292;&#21363;&#20351;&#20351;&#29992;&#20102;&#21407;&#23376;&#31867;&#20063;&#23384;&#22312;&#24182;&#21457;&#39118;&#38505;&#65292; &#22312;&#35201;&#27714;&#24456;&#39640;&#30340;&#24773;&#20917;&#19979;&#36824;&#26159;&#20351;&#29992;synchronized&#25110;&#32773;lock&#38145;</p>
+<p><strong>&#20020;&#30028;&#21306;</strong></p>
+<p>&#20351;&#29992;&#21516;&#27493;&#25511;&#21046;&#22359;&#65292;&#32780;&#19981;&#26159;&#20351;&#29992;synchronized&#20851;&#38190;&#23383;&#38145;&#20303;&#25972;&#20010;&#26041;&#27861;&#65292;&#36825;&#26679;&#23613;&#21487;&#33021;&#30340;&#20943;&#23569;&#21516;&#27493;&#21306;&#22495;&#65292;&#25552;&#39640;&#24182;&#21457;&#25928;&#29575;</p>
+<p><strong>&#32447;&#31243;&#26412;&#22320;&#23384;&#20648;</strong></p>
+</body>
+</html>
